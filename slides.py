@@ -6,6 +6,7 @@ Usage:
 spec.json:
 {
   "style": "A" | "B" | "C" | "D",
+  "logo": "va" | "vl" | "full" | "name"   (optional; default: A=va, B=vl, C=name, D=full),
   "slides": [
     {"t": "cover", "title": "...", "sub": "..."},
     {"t": "items", "heading": "...", "items": ["...", "..."]},
@@ -23,7 +24,7 @@ import sys
 from PIL import Image, ImageDraw, ImageFont
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-LOGO_PATH = os.path.join(HERE, "assets", "va-life-white.png")
+LOGO_DIR = os.path.join(HERE, "assets", "logos")
 FONT = "/usr/share/fonts/truetype/google-fonts/ofl/montserrat/Montserrat[wght].ttf"
 
 W, H = 1080, 1350
@@ -42,13 +43,22 @@ def font(size, weight):
     return f
 
 
-_logo = Image.open(LOGO_PATH).convert("RGBA")
-_logo = _logo.crop(_logo.getchannel("A").getbbox())
-_logo = _logo.resize((round(_logo.width * LOGO_H / _logo.height), LOGO_H), Image.LANCZOS)
-LOGO_WHITE = _logo
-_black = Image.new("RGBA", _logo.size, (17, 17, 17, 255))
-_black.putalpha(_logo.getchannel("A"))
-LOGO_BLACK = _black
+# Logo variants in assets/logos/<name>-white.png and <name>-black.png
+# va = "VA life" circle, vl = "VL" circle, full = "VARESE life" circle, name = wide wordmark.
+LOGO_HEIGHTS = {"va": 120, "vl": 120, "full": 120, "name": 96}
+STYLE_LOGO = {"A": "va", "B": "vl", "C": "name", "D": "full"}
+_logo_cache = {}
+CURRENT_LOGO = "va"
+
+
+def get_logo(name, dark):
+    key = (name, dark)
+    if key not in _logo_cache:
+        im = Image.open(os.path.join(LOGO_DIR, f"{name}-{'black' if dark else 'white'}.png")).convert("RGBA")
+        im = im.crop(im.getchannel("A").getbbox())
+        h = LOGO_HEIGHTS[name]
+        _logo_cache[key] = im.resize((round(im.width * h / im.height), h), Image.LANCZOS)
+    return _logo_cache[key]
 
 
 def tw(d, t, f):
@@ -95,8 +105,8 @@ def canvas(style, kind, n, total, arrow):
     else:
         d.text((W - MARGIN, 60), f"{n}/{total}", font=font(120, 700), fill=BG,
                stroke_width=3, stroke_fill=YELLOW, anchor="ra")
-    logo = LOGO_BLACK if yellow_bg else LOGO_WHITE
-    img.paste(logo, (ml, H - 96 - LOGO_H), logo)
+    logo = get_logo(CURRENT_LOGO, yellow_bg)
+    img.paste(logo, (ml, H - 96 - LOGO_H // 2 - logo.height // 2), logo)
     if arrow:
         cx, cy, r = W - MARGIN - 38, H - 96 - LOGO_H // 2, 38
         circle = BG if yellow_bg else YELLOW
@@ -224,7 +234,9 @@ def cta(style, n, total, s, path):
 
 
 def build(spec, outdir, prefix):
+    global CURRENT_LOGO
     style = spec.get("style", "A")
+    CURRENT_LOGO = spec.get("logo") or STYLE_LOGO[style]
     slides = spec["slides"]
     total = len(slides)
     os.makedirs(outdir, exist_ok=True)

@@ -1,0 +1,26 @@
+{
+ "style": "B",
+ "slides": [
+  {
+   "t": "cover",
+   "title": "Sabato a Varese",
+   "sub": "4 idee per oggi"
+  },
+  {
+   "t": "items",
+   "heading": "Sabato",
+   "items": [
+    "Albero di Natale, Gallarate",
+    "Parenti Serpenti, Varese",
+    "Orticanoodles Art Night, Varese",
+    "Albizzate Segreta: affreschi del Trecento"
+   ]
+  },
+  {
+   "t": "cta",
+   "heading": "Tutti gli eventi della settimana",
+   "body": "Ogni mercoledì, gratis via email. La trovi sul nostro sito.",
+   "button": "Iscriviti alla newsletter"
+  }
+ ]
+}

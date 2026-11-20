@@ -1,0 +1,33 @@
+{
+ "style": "A",
+ "slides": [
+  {
+   "t": "cover",
+   "title": "Weekend a Varese",
+   "sub": "5 idee per non restare a casa"
+  },
+  {
+   "t": "items",
+   "heading": "Venerdì e sabato",
+   "items": [
+    "Omaggio a Guccini, Cinema Teatro Nuovo, Varese",
+    "Apre Laveno On Ice, Laveno Mombello",
+    "Luci di Natale a Tornavento, Lonate Pozzolo"
+   ]
+  },
+  {
+   "t": "items",
+   "heading": "Domenica",
+   "items": [
+    "Rassegna del vino varesino, Induno Olona",
+    "Mercatino dell'antiquariato, Castelseprio"
+   ]
+  },
+  {
+   "t": "cta",
+   "heading": "Tutti gli eventi della settimana",
+   "body": "Ogni mercoledì, gratis via email. La trovi sul nostro sito.",
+   "button": "Iscriviti alla newsletter"
+  }
+ ]
+}

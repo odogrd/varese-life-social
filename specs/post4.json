@@ -1,0 +1,25 @@
+{
+ "style": "D",
+ "slides": [
+  {
+   "t": "cover",
+   "title": "Domani esce la nuova newsletter",
+   "sub": "Gli eventi di Varese e provincia, ogni mercoledì"
+  },
+  {
+   "t": "items",
+   "heading": "Cosa trovi",
+   "items": [
+    "Tutti gli eventi della settimana, divisi per categoria",
+    "Musica, teatro, mostre, famiglie e sport",
+    "Gratis, direttamente nella tua email"
+   ]
+  },
+  {
+   "t": "cta",
+   "heading": "Non perderti i prossimi eventi",
+   "body": "Ogni mercoledì, gratis via email. La trovi sul nostro sito.",
+   "button": "Iscriviti alla newsletter"
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "style": "C",
+ "slides": [
+  {
+   "t": "cover",
+   "title": "Domenica a Varese",
+   "sub": "4 idee per oggi"
+  },
+  {
+   "t": "items",
+   "heading": "Domenica",
+   "items": [
+    "Visita guidata, Fondazione Morandini, Varese",
+    "La dolce magia del Natale, Besozzo",
+    "Varese-Correggese, Stadio Ossola",
+    "Germinet Salvatorem, Sacro Monte, Varese"
+   ]
+  },
+  {
+   "t": "cta",
+   "heading": "Tutti gli eventi della settimana",
+   "body": "Ogni mercoledì, gratis via email. La trovi sul nostro sito.",
+   "button": "Iscriviti alla newsletter"
+  }
+ ]
+}
